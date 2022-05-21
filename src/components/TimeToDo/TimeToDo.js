@@ -7,9 +7,19 @@ import Button from '@mui/material/Button'
 import { useSelector, useDispatch } from 'react-redux'
 import { addTask } from '../../features/tasks/taskSlice'
 import TaskRow from '../TaskRow/TaskRow'
+
+export const datesAreOnSameDay = (first, second) =>{
+first = new Date(first)
+second = new Date(second)
+return first.getFullYear() === second.getFullYear() &&
+  first.getMonth() === second.getMonth() &&
+  first.getDate() === second.getDate() //move to helper
+}
+
 function TimeToDo() {
+  const {currentViewDate} = useSelector((state) => state.calendar)
   const tasks = useSelector((state) =>
-    state.tasks.tasks.filter((task) => task.type === 'timebased')
+    state.tasks.tasks.filter((task) => task.type === 'timebased' && datesAreOnSameDay(task.taskDate, currentViewDate))
   )
   const dispatch = useDispatch()
   return (
@@ -30,6 +40,7 @@ function TimeToDo() {
                   typeprops: {
                     title: 'this is test',
                   },
+                  taskDate: new Date(), //This can be bought from popup later
                 })
               )
             }}

@@ -1,24 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './TaskRow.css'
 import DoneIcon from '@mui/icons-material/Done'
 import DangerousIcon from '@mui/icons-material/Dangerous'
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
 import SaveIcon from '@mui/icons-material/Save'
-import { Button } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setEditable } from '../../features/tasks/taskSlice'
 function TaskRow(props) {
-  let description = props.data
+  const [description, setDescription] = useState(props.data)
   const dispatch = useDispatch()
+  const handleChange = (event) => {
+    setDescription(event.target.value)
+  }
   return (
     <div className='taskrow' key={props.tid}>
-      <div className='description'>{description}</div>
+      <div className='taskdesc'>
+        {props.isEditable ? (
+          <div className='edittasktext'>
+            <TextField
+              id='outlined-multiline-flexible fullWidth'
+              label='Task description'
+              fullWidth
+              margin="normal"
+              multiline
+              maxRows={4}
+              value={description}
+              onChange={handleChange}
+            />
+          </div>
+        ) : (
+          <div className='description'>{description}</div>
+        )}
+      </div>
       <div className='actions'>
         <Button variant='contained' className='actionbutton' color='success'>
-          <DoneIcon style={{ color: 'white' }}  />
+          <DoneIcon style={{ color: 'white' }} />
         </Button>
         <Button variant='contained' className='actionbutton' color='error'>
-          <DangerousIcon style={{ color: 'white' }}  />
+          <DangerousIcon style={{ color: 'white' }} />
         </Button>
         <Button
           variant='contained'
@@ -35,9 +55,9 @@ function TaskRow(props) {
           }
         >
           {!props.isEditable ? (
-            <ModeEditIcon style={{ color: 'white' }}  />
+            <ModeEditIcon style={{ color: 'white' }} />
           ) : (
-            <SaveIcon style={{ color: 'white' }}  />
+            <SaveIcon style={{ color: 'white' }} />
           )}
         </Button>
       </div>

@@ -47,7 +47,7 @@
 
 .tasktodo {
   border-radius: 5px;
-  min-width: 45vw;
+  width: 45vw;
   padding: 10px;
   background-color: #2b8ff2;
 
@@ -55,7 +55,7 @@
 
 .timetodo {
   border-radius: 5px;
-  min-width: 45vw;
+  width: 45vw;
   padding: 10px;
   background-color: #2b8ff2;
 

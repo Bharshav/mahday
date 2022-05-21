@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography'
 import InputBase from '@mui/material/InputBase'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
+import { useDispatch, useSelector } from 'react-redux'
+import { modifyViewDate } from '../../features/calendar/calendarSlice'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,8 +54,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 export default function AppHeader() {
+  const [startDate, setStartDate] = React.useState(new Date())
+  const dispatch = useDispatch()
+  const { currentViewDate } = useSelector((state) => state.calendar)
   return (
-    <div style={{height:'10vh'}}>
+    <div style={{ height: '10vh' }}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position='static'>
           <Toolbar>
@@ -74,6 +79,13 @@ export default function AppHeader() {
             >
               MahDay
             </Typography>
+            <input
+              type='date'
+              value={currentViewDate}
+              onChange={(e) =>
+                dispatch(modifyViewDate({ newDate: e.target.value }))
+              }
+            ></input>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

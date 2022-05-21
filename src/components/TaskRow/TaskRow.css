@@ -1,40 +1,50 @@
-.taskrow{
- background-color: #ffffff;
- border-radius: 5px;
- margin: 10px;
- padding: 0px 10px;
- display: flex;
- justify-content: space-between;
- flex-wrap: wrap;
+.taskrow {
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.description{
+.description {
   padding: 10px 0px;
+  overflow: auto;
+  width: 100%;
+  max-height: 150px;
 }
 
-.done{
- background-color: green;
- height: 100%;
- width: 40px;
- display: flex;
- justify-content: center;
- align-items: center;
+.done {
+  background-color: green;
+  height: 100%;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.miss{
- background-color: rgb(151, 14, 14);
- height: 100%;
- width: 40px;
- display: flex;
- justify-content: center;
- align-items: center;
+.miss {
+  background-color: rgb(151, 14, 14);
+  height: 100%;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.actions{
- display: flex;
+.actions {
+  display: flex;
+  width: 30%;
+  margin: 5px;
 }
 /* 
 .actions1 Button:hover{
  background-color: aquamarine;
 } */
 
+.edittasktext {
+}
+.taskdesc {
+  width: 60%;
+}

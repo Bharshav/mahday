@@ -30,6 +30,7 @@ function TaskToDo() {
                   typeprops: {
                     title: 'this is test',
                   },
+                  taskDate: new Date(), //This can be bought from popup later
                 })
               )
             }}

@@ -19,11 +19,15 @@ const taskSlice = createSlice({
         type: payload.type,
         typeprops: payload.typeprops,
         isEditable: false,
+        taskDate: payload.taskDate
       })
     },
     setEditable: (state, { payload }) => {
       const task = state.tasks.find((task) => task.id === payload.id)
       task.isEditable = payload.editstatus
+      if (payload.editstatus === false) {
+        task.description = payload.description
+      }
     }
   },
 })
