@@ -9,18 +9,23 @@ import { addTask } from '../../features/tasks/taskSlice'
 import TaskRow from '../TaskRow/TaskRow'
 import NewTaskPopUp from '../NewTaskPopUp/NewTaskPopUp'
 
-export const datesAreOnSameDay = (first, second) =>{
-first = new Date(first)
-second = new Date(second)
-return first.getFullYear() === second.getFullYear() &&
-  first.getMonth() === second.getMonth() &&
-  first.getDate() === second.getDate() //move to helper
+export const datesAreInBetween = (first, second,date) =>{
+  // console.log(typeof(first),first)
+first = new Date(first.substring(0,10))
+second = new Date(second.substring(0,10))
+date = new Date(date)
+
+return first<=date && date <=second //move to helper
 }
 
 function TimeToDo() {
-  const {currentViewDate} = useSelector((state) => state.calendar)
+  const {currentViewDateStart,currentViewDateEnd} = useSelector((state) => state.calendar)
   const tasks = useSelector((state) =>
-    state.tasks.tasks.filter((task) => task.type === 'timebased' && datesAreOnSameDay(task.taskDate, currentViewDate))
+    state.tasks.tasks.filter(
+      (task) =>
+        task.type === 'timebased' &&
+        datesAreInBetween(currentViewDateStart, currentViewDateEnd,task.taskDate)
+    )
   )
   return (
     <div>

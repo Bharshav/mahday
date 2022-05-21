@@ -7,14 +7,14 @@ import TaskRow from '../TaskRow/TaskRow'
 import { useSelector, useDispatch } from 'react-redux'
 import { addTask } from '../../features/tasks/taskSlice'
 import NewTaskPopUp from '../NewTaskPopUp/NewTaskPopUp'
-import { datesAreOnSameDay } from '../TimeToDo/TimeToDo'
+import { datesAreInBetween } from '../TimeToDo/TimeToDo'
 function TaskToDo() {
-  const { currentViewDate } = useSelector((state) => state.calendar)
+  const { currentViewDateStart,currentViewDateEnd } = useSelector((state) => state.calendar)
   const tasks = useSelector((state) =>
     state.tasks.tasks.filter(
       (task) =>
         task.type === 'taskbased' &&
-        datesAreOnSameDay(task.taskDate, currentViewDate)
+        datesAreInBetween(currentViewDateStart, currentViewDateEnd,task.taskDate)
     )
   )
   return (

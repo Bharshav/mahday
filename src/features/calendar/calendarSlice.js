@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const tomorrow = new Date()
+tomorrow.setDate(tomorrow.getDate() + 1)
+
 const initialState = {
-  currentViewDate: new Date()
+  currentViewDateStart: (new Date()).toJSON(),
+  currentViewDateEnd: tomorrow.toJSON(),
 }
 
 const calendarSlice = createSlice({
@@ -10,9 +14,9 @@ const calendarSlice = createSlice({
   reducers: {
     modifyViewDate: (state, { payload }) => {
       // console.log(payload)
-      state.currentViewDate = payload.newDate
-    }
-    
+      state.currentViewDateStart = payload.newDateStart.toJSON()
+      state.currentViewDateEnd = payload.newDateEnd.toJSON()
+    },
   },
 })
 
