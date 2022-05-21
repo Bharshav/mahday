@@ -48,3 +48,8 @@
 .taskdesc {
   width: 60%;
 }
+
+.completed{
+  background-color: rgba(0, 128, 0, 0.405);
+  color: white;
+}

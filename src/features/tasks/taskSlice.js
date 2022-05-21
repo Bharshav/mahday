@@ -15,7 +15,7 @@ const taskSlice = createSlice({
       state.tasks.push({
         id: state.tasks.length + 1,
         description: payload.description,
-        completed: false,
+        isCompleted: false,
         type: payload.type,
         typeprops: payload.typeprops,
         isEditable: false,
@@ -28,10 +28,14 @@ const taskSlice = createSlice({
       if (payload.editstatus === false) {
         task.description = payload.description
       }
+    },
+    markAsCompleted: (state, { payload }) => {
+      const task = state.tasks.find((task) => task.id === payload.id)
+      task.isCompleted = payload.completeStatus
     }
   },
 })
 
 // console.log(taskSlice)
 export default taskSlice.reducer
-export const { addTask, setEditable } = taskSlice.actions
+export const { addTask, setEditable, markAsCompleted } = taskSlice.actions

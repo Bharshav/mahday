@@ -40,6 +40,7 @@ function TimeToDo() {
         <TaskRow
           key={task.id}
           tid={task.id}
+          isCompleted={task.isCompleted}
           isEditable={task.isEditable}
           data={task.description}
         />

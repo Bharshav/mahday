@@ -6,7 +6,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit'
 import SaveIcon from '@mui/icons-material/Save'
 import { Button, TextField } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { setEditable } from '../../features/tasks/taskSlice'
+import { setEditable, markAsCompleted } from '../../features/tasks/taskSlice'
 function TaskRow(props) {
   const [description, setDescription] = useState(props.data)
   const dispatch = useDispatch()
@@ -14,7 +14,10 @@ function TaskRow(props) {
     setDescription(event.target.value)
   }
   return (
-    <div className='taskrow' key={props.tid}>
+    <div
+      className={'taskrow ' + (props.isCompleted ? 'completed' : '')}
+      key={props.tid}
+    >
       <div className='taskdesc'>
         {props.isEditable ? (
           <div className='edittasktext'>
@@ -22,7 +25,7 @@ function TaskRow(props) {
               id='outlined-multiline-flexible fullWidth'
               label='Task description'
               fullWidth
-              margin="normal"
+              margin='normal'
               multiline
               maxRows={4}
               value={description}
@@ -34,10 +37,34 @@ function TaskRow(props) {
         )}
       </div>
       <div className='actions'>
-        <Button variant='contained' className='actionbutton' color='success'>
+        <Button
+          onClick={() =>
+            dispatch(
+              markAsCompleted({
+                id: props.tid,
+                completeStatus: true,
+              })
+            )
+          }
+          variant='contained'
+          className='actionbutton'
+          color='success'
+        >
           <DoneIcon style={{ color: 'white' }} />
         </Button>
-        <Button variant='contained' className='actionbutton' color='error'>
+        <Button
+          variant='contained'
+          onClick={() =>
+            dispatch(
+              markAsCompleted({
+                id: props.tid,
+                completeStatus: false,
+              })
+            )
+          }
+          className='actionbutton'
+          color='error'
+        >
           <DangerousIcon style={{ color: 'white' }} />
         </Button>
         <Button
