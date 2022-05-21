@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/mahday/static/css/main.0fa718f7.css",
-    "main.js": "/mahday/static/js/main.267f16ca.js",
+    "main.css": "/mahday/static/css/main.b218311f.css",
+    "main.js": "/mahday/static/js/main.3ecc9575.js",
     "static/js/787.8418a344.chunk.js": "/mahday/static/js/787.8418a344.chunk.js",
     "static/media/logo.svg": "/mahday/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/mahday/index.html",
-    "main.0fa718f7.css.map": "/mahday/static/css/main.0fa718f7.css.map",
-    "main.267f16ca.js.map": "/mahday/static/js/main.267f16ca.js.map",
+    "main.b218311f.css.map": "/mahday/static/css/main.b218311f.css.map",
+    "main.3ecc9575.js.map": "/mahday/static/js/main.3ecc9575.js.map",
     "787.8418a344.chunk.js.map": "/mahday/static/js/787.8418a344.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0fa718f7.css",
-    "static/js/main.267f16ca.js"
+    "static/css/main.b218311f.css",
+    "static/js/main.3ecc9575.js"
   ]
 }
