@@ -57,6 +57,7 @@ export default function AppHeader() {
   const [startDate, setStartDate] = React.useState(new Date())
   const dispatch = useDispatch()
   const { currentViewDate } = useSelector((state) => state.calendar)
+  console.log(currentViewDate)
   return (
     <div style={{ height: '10vh' }}>
       <Box sx={{ flexGrow: 1 }}>

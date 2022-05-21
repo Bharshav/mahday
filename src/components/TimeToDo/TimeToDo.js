@@ -7,6 +7,7 @@ import Button from '@mui/material/Button'
 import { useSelector, useDispatch } from 'react-redux'
 import { addTask } from '../../features/tasks/taskSlice'
 import TaskRow from '../TaskRow/TaskRow'
+import NewTaskPopUp from '../NewTaskPopUp/NewTaskPopUp'
 
 export const datesAreOnSameDay = (first, second) =>{
 first = new Date(first)
@@ -21,32 +22,13 @@ function TimeToDo() {
   const tasks = useSelector((state) =>
     state.tasks.tasks.filter((task) => task.type === 'timebased' && datesAreOnSameDay(task.taskDate, currentViewDate))
   )
-  const dispatch = useDispatch()
   return (
     <div>
       <div className='header'>
         <Paper className='todoheader' elevation={3}>
           <div>Time based</div>
           {/* <TaskRow /> */}
-          <Button
-            variant='contained'
-            className='addaction'
-            onClick={() => {
-              dispatch(
-                addTask({
-                  description: 'this is test',
-                  completed: false,
-                  type: 'timebased',
-                  typeprops: {
-                    title: 'this is test',
-                  },
-                  taskDate: new Date(), //This can be bought from popup later
-                })
-              )
-            }}
-          >
-            <AddIcon />
-          </Button>
+          <NewTaskPopUp taskType='time based'/>
         </Paper>
       </div>
       {tasks.map((task) => (
