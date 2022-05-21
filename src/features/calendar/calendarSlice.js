@@ -15,7 +15,7 @@ const calendarSlice = createSlice({
     modifyViewDate: (state, { payload }) => {
       // console.log(payload)
       state.currentViewDateStart = payload.newDateStart.toJSON()
-      state.currentViewDateEnd = payload.newDateEnd? payload.newDateEnd.toJSON():state.currentViewDateEnd
+      state.currentViewDateEnd = payload.newDateEnd.toJSON()
     },
   },
 })
