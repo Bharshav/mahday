@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .description {
@@ -58,4 +59,17 @@
 
 .actionbutton{
   width:20px;
+}
+
+.timetext{
+  background-color: rgb(230, 235, 79);
+  border-radius: 5px;
+  color: black;
+  padding: 5px 10px;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.time{
+  display:flex;
+  align-items: flex-start;
 }

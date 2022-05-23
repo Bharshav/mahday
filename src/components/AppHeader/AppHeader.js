@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch, useSelector } from 'react-redux'
-import { modifyViewDate,reset } from '../../features/calendar/calendarSlice'
+import { modifyViewDate, reset } from '../../features/calendar/calendarSlice'
 import { DatePicker, Space } from 'antd'
 import moment from 'moment'
 
@@ -60,7 +60,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function AppHeader() {
   const [startDate, setStartDate] = React.useState(new Date())
   const dispatch = useDispatch()
-  const { currentViewDateStart,currentViewDateEnd } = useSelector((state) => state.calendar)
+  const { currentViewDateStart, currentViewDateEnd } = useSelector(
+    (state) => state.calendar
+  )
   return (
     <div style={{ height: '10vh' }}>
       <Box sx={{ flexGrow: 1 }}>
@@ -84,13 +86,12 @@ export default function AppHeader() {
               MahDay
             </Typography>
             <RangePicker
-              defaultValue={[
-                moment(new Date(currentViewDateStart.substring(0, 10))),
-                moment(new Date(currentViewDateStart.substring(0, 10))),
-              ]}
               onCalendarChange={(e) =>
                 dispatch(
-                  modifyViewDate({ newDateStart: e[0], newDateEnd: e[1] })
+                  modifyViewDate({
+                    newDateStart: e[0].toJSON(),
+                    newDateEnd: e[1] ? e[1].toJSON() : new Date().toJSON(),
+                  })
                 )
               }
             />

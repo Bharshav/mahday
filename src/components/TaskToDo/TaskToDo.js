@@ -33,6 +33,7 @@ function TaskToDo() {
           isCompleted={task.isCompleted}
           isEditable={task.isEditable}
           data={task.description}
+          task={task}
         />
       ))}
     </div>

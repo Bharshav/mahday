@@ -11,7 +11,6 @@ const taskSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, { payload }) => {
-      // console.log(payload)
       state.tasks.push({
         id: state.tasks.length + 1,
         description: payload.description,
@@ -19,7 +18,7 @@ const taskSlice = createSlice({
         type: payload.type,
         typeprops: payload.typeprops,
         isEditable: false,
-        taskDate: payload.taskDate.toJSON()
+        taskDate: payload.taskDate
       })
     },
     setEditable: (state, { payload }) => {

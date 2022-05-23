@@ -16,7 +16,7 @@ const calendarSlice = createSlice({
       // console.log(payload)
       const newEndDateOfView = new Date(payload.newDateEnd?payload.newDateEnd:new Date())
       newEndDateOfView.setDate(newEndDateOfView.getDate()+1)
-      state.currentViewDateStart = payload.newDateStart.toJSON()
+      state.currentViewDateStart = payload.newDateStart
       state.currentViewDateEnd = payload.newDateEnd? newEndDateOfView.toJSON():state.currentViewDateEnd
     },
     reset: (state) => {

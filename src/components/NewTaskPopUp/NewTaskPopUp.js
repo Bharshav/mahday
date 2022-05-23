@@ -33,7 +33,7 @@ export default function NewTaskPopUp(props) {
           typeprops: {
             title: 'this is test',
           },
-          taskDate: date, //This can be bought from popup later
+          taskDate: date.toJSON(), //This can be bought from popup later
         })
       )
     }
@@ -70,7 +70,7 @@ export default function NewTaskPopUp(props) {
             Task Date:
             <Input
               style={{ marginLeft: '10px' }}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => setDate(new Date(e.target.value))}
               placeholder='Enter task date'
               type={props.taskType == 'time based' ? 'datetime-local' : 'date'}
             />

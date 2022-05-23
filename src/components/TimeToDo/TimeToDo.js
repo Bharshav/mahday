@@ -8,11 +8,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addTask } from '../../features/tasks/taskSlice'
 import TaskRow from '../TaskRow/TaskRow'
 import NewTaskPopUp from '../NewTaskPopUp/NewTaskPopUp'
+import moment from 'moment';
 
 export const datesAreInBetween = (first, second,date) =>{
   // console.log(typeof(first),first)
-first = new Date(first.substring(0,10))
-second = new Date(second.substring(0,10))
+  
+first = moment(first.substring(0,10))
+second = moment(second.substring(0,10))
 date = new Date(date)
 
 return first<=date && date <second //move to helper
@@ -43,6 +45,7 @@ function TimeToDo() {
           isCompleted={task.isCompleted}
           isEditable={task.isEditable}
           data={task.description}
+          task={task}
         />
       ))}
     </div>
