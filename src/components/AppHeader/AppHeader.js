@@ -79,7 +79,9 @@ export default function AppHeader() {
   const handleClose = () => {
     setAnchorEl(null)
   }
-  const [filter, setFilter] = React.useState('filter')
+  const [filter, setFilter] = React.useState(
+    shouldShowAll ? 'showall' : 'filter'
+  )
 
   const handleChangeOfFilter = (event, newval) => {
     if (newval!=null){
