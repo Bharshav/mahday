@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography'
 import InputBase from '@mui/material/InputBase'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
+import Popover from '@mui/material/Popover'
 import { useDispatch, useSelector } from 'react-redux'
 import { modifyViewDate, reset } from '../../features/calendar/calendarSlice'
 import { DatePicker, Space } from 'antd'
@@ -64,12 +65,25 @@ export default function AppHeader() {
   const { currentViewDateStart, currentViewDateEnd } = useSelector(
     (state) => state.calendar
   )
+  const [anchorEl, setAnchorEl] = React.useState(null)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
   return (
     <div style={{ height: '10vh' }}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position='static'>
           <Toolbar>
             <IconButton
+              onClick={handleClick}
               size='large'
               edge='start'
               color='inherit'
@@ -78,6 +92,18 @@ export default function AppHeader() {
             >
               <MenuIcon />
             </IconButton>
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+            >
+              <Typography sx={{ p: 2 }}>This is WIP buddy.</Typography>
+            </Popover>
             <Typography
               variant='h6'
               noWrap
@@ -107,7 +133,9 @@ export default function AppHeader() {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder='Search…'
-                onChange={(e) => {dispatch(modifySearchTerm({searchTerm:e.target.value}))}}
+                onChange={(e) => {
+                  dispatch(modifySearchTerm({ searchTerm: e.target.value }))
+                }}
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
