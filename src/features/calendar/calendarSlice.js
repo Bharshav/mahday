@@ -14,12 +14,17 @@ const calendarSlice = createSlice({
   reducers: {
     modifyViewDate: (state, { payload }) => {
       // console.log(payload)
+      const newEndDateOfView = new Date(payload.newDateEnd?payload.newDateEnd:new Date())
+      newEndDateOfView.setDate(newEndDateOfView.getDate()+1)
       state.currentViewDateStart = payload.newDateStart.toJSON()
-      state.currentViewDateEnd = payload.newDateEnd? payload.newDateEnd.toJSON():state.currentViewDateEnd
+      state.currentViewDateEnd = payload.newDateEnd? newEndDateOfView.toJSON():state.currentViewDateEnd
     },
+    reset: (state) => {
+      return initialState
+    }
   },
 })
 
 // console.log(taskSlice)
 export default calendarSlice.reducer
-export const { modifyViewDate } = calendarSlice.actions
+export const { modifyViewDate,reset } = calendarSlice.actions

@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch, useSelector } from 'react-redux'
-import { modifyViewDate } from '../../features/calendar/calendarSlice'
+import { modifyViewDate,reset } from '../../features/calendar/calendarSlice'
 import { DatePicker, Space } from 'antd'
 import moment from 'moment'
 
@@ -83,8 +83,18 @@ export default function AppHeader() {
             >
               MahDay
             </Typography>
-            <RangePicker defaultPickerValue={[moment(currentViewDateStart),moment(currentViewDateEnd)]} onCalendarChange={e=>dispatch(modifyViewDate({ newDateStart: e[0],newDateEnd:e[1] }))} />
-            
+            <RangePicker
+              defaultValue={[
+                moment(new Date(currentViewDateStart.substring(0, 10))),
+                moment(new Date(currentViewDateStart.substring(0, 10))),
+              ]}
+              onCalendarChange={(e) =>
+                dispatch(
+                  modifyViewDate({ newDateStart: e[0], newDateEnd: e[1] })
+                )
+              }
+            />
+
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
