@@ -67,7 +67,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function AppHeader() {
   const [startDate, setStartDate] = React.useState(new Date())
   const dispatch = useDispatch()
-  const { currentViewDateStart, currentViewDateEnd } = useSelector(
+  const { currentViewDateStart, currentViewDateEnd,showAll } = useSelector(
     (state) => state.calendar
   )
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -79,7 +79,7 @@ export default function AppHeader() {
   const handleClose = () => {
     setAnchorEl(null)
   }
-  const [filter, setFilter] = React.useState('filter')
+  const [filter, setFilter] = React.useState(showAll?'showall':'filter')
 
   const handleChangeOfFilter = (event, newval) => {
     if (newval!=null){
