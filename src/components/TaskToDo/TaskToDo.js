@@ -20,11 +20,12 @@ function TaskToDo() {
   return (
     <div>
       <div className='header'>
-        <Paper className='todoheader' elevation={3}>
+        <div className='shimmer'></div>
+        <div className='todoheader' elevation={3}>
           <div>Task based</div>
           {/* <TaskRow /> */}
           <NewTaskPopUp taskType='task based' />
-        </Paper>
+        </div>
       </div>
       {tasks.map((task) => (
         <TaskRow

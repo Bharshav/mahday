@@ -60,6 +60,7 @@ export default function NewTaskPopUp(props) {
             fullWidth={true}
             margin='normal'
             multiline
+            autoFocus={true} //not working
             maxRows={4}
             value={description}
             onChange={(event) => {
