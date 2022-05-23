@@ -86,6 +86,10 @@ export default function AppHeader() {
               MahDay
             </Typography>
             <RangePicker
+              defaultValue={[
+                moment(new Date(currentViewDateStart.substring(0, 10))),
+                moment(new Date(currentViewDateStart.substring(0, 10))),
+              ]}
               onCalendarChange={(e) =>
                 dispatch(
                   modifyViewDate({
