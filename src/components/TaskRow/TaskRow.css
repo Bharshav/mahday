@@ -38,8 +38,8 @@
   display: flex;
   width: 50%;
   flex-wrap: wrap;
-  margin:5px 0px;
-  justify-content: flex-end
+  margin: 5px 0px;
+  justify-content: flex-end;
 }
 /* 
 .actions1 Button:hover{
@@ -52,30 +52,41 @@
   width: 50%;
 }
 
-.completed{
+.completed {
   background-color: rgba(0, 128, 0, 0.405);
   color: white;
 }
 
-.actionbutton{
-  width:20px;
+.actionbutton {
+  width: 20px;
 }
 
-.timetext{
+.timetext {
   font-size: 11px;
   margin-right: 5px;
-  
 }
-.time{
-  display:flex;
+.time {
+  display: flex;
   align-items: baseline;
   background-color: rgb(230, 235, 79);
   border-radius: 5px;
   color: black;
   padding: 5px 10px;
   margin-bottom: 10px;
-  
 }
-.timetexttime{
-font-size: 14px;
+.timetexttime {
+  font-size: 14px;
+}
+
+.tasktimerow {
+  animation: ease-in-out rotateonce 2s 1;
+}
+
+@keyframes rotateonce {
+  0% {
+    transform: rotate3d(1, 0, 0, 45deg);
+  }
+  100% {
+    transform: rotate3d(1, 0, 0, 0deg);
+  }
 }
