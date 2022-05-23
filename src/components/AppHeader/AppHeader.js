@@ -11,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch, useSelector } from 'react-redux'
 import { modifyViewDate, reset } from '../../features/calendar/calendarSlice'
 import { DatePicker, Space } from 'antd'
+import {modifySearchTerm} from '../../features/search/searchSlice'
 import moment from 'moment'
 
 const { RangePicker } = DatePicker
@@ -106,6 +107,7 @@ export default function AppHeader() {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder='Search…'
+                onChange={(e) => {dispatch(modifySearchTerm({searchTerm:e.target.value}))}}
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>

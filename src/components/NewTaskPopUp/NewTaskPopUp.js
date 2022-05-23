@@ -47,8 +47,9 @@ export default function NewTaskPopUp(props) {
         variant='contained'
         className='addaction'
         onClick={handleClickOpen}
+        style={{backgroundColor: '#fff'}}
       >
-        <AddIcon />
+        <AddIcon style={{color:'grey',fontSize:'25px'}}/>
       </Button>
 
       <Dialog maxWidth='md' fullWidth={true} open={open} onClose={handleClose}>
