@@ -6,6 +6,7 @@ tomorrow.setDate(tomorrow.getDate() + 1)
 const initialState = {
   currentViewDateStart: (new Date()).toJSON(),
   currentViewDateEnd: tomorrow.toJSON(),
+  showAll: false,
 }
 
 const calendarSlice = createSlice({
@@ -21,10 +22,13 @@ const calendarSlice = createSlice({
     },
     reset: (state) => {
       return initialState
+    },
+    showAll:(state,{payload})=>{
+      state.showAll = payload.showAll
     }
   },
 })
 
 // console.log(taskSlice)
 export default calendarSlice.reducer
-export const { modifyViewDate,reset } = calendarSlice.actions
+export const { modifyViewDate,reset, showAll } = calendarSlice.actions

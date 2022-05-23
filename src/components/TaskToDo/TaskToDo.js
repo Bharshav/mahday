@@ -9,18 +9,18 @@ import { addTask } from '../../features/tasks/taskSlice'
 import NewTaskPopUp from '../NewTaskPopUp/NewTaskPopUp'
 import { datesAreInBetween } from '../TimeToDo/TimeToDo'
 function TaskToDo() {
-  const { currentViewDateStart,currentViewDateEnd } = useSelector((state) => state.calendar)
+  const { currentViewDateStart,currentViewDateEnd,showAll } = useSelector((state) => state.calendar)
   const { searchTerm } = useSelector((state) => state.search)
 
   const tasks = useSelector((state) =>
     state.tasks.tasks.filter(
       (task) =>
         task.type === 'taskbased' &&
-        datesAreInBetween(
+        (showAll || datesAreInBetween(
           currentViewDateStart,
           currentViewDateEnd,
           task.taskDate
-        ) &&
+        )) &&
         task.description.includes(searchTerm)
     )
   )

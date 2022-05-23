@@ -16,3 +16,13 @@ code {
  border-radius: 0 !important;
  height: 40px;
 }
+
+.MuiToggleButton-root{
+  background-color: white !important;
+  color:grey !important;
+}
+
+.Mui-selected{
+  background-color: rgb(151, 149, 149) !important;
+  color:white !important;
+}

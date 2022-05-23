@@ -21,13 +21,13 @@ return first<=date && date <second //move to helper
 }
 
 function TimeToDo() {
-  const {currentViewDateStart,currentViewDateEnd} = useSelector((state) => state.calendar)
+  const {currentViewDateStart,currentViewDateEnd,showAll} = useSelector((state) => state.calendar)
   const {searchTerm} = useSelector((state) => state.search)
   const tasks = useSelector((state) =>
     state.tasks.tasks.filter(
       (task) =>
         task.type === 'timebased' &&
-        datesAreInBetween(currentViewDateStart, currentViewDateEnd,task.taskDate) && task.description.includes(searchTerm)
+        (showAll || datesAreInBetween(currentViewDateStart, currentViewDateEnd,task.taskDate)) && task.description.includes(searchTerm)
     )
   )
   return (

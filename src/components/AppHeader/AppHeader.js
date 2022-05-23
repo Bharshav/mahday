@@ -10,10 +10,15 @@ import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
 import Popover from '@mui/material/Popover'
 import { useDispatch, useSelector } from 'react-redux'
-import { modifyViewDate, reset } from '../../features/calendar/calendarSlice'
+import {
+  modifyViewDate,
+  reset,
+  showAll,
+} from '../../features/calendar/calendarSlice'
 import { DatePicker, Space } from 'antd'
-import {modifySearchTerm} from '../../features/search/searchSlice'
+import { modifySearchTerm } from '../../features/search/searchSlice'
 import moment from 'moment'
+import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 
 const { RangePicker } = DatePicker
 
@@ -74,6 +79,18 @@ export default function AppHeader() {
   const handleClose = () => {
     setAnchorEl(null)
   }
+  const [filter, setFilter] = React.useState('filter')
+
+  const handleChangeOfFilter = (event, newval) => {
+    if (newval!=null){
+      setFilter((val) => newval)
+      if (newval === 'filter') {
+        dispatch(showAll({ showAll: false }))
+      } else {
+        dispatch(showAll({ showAll: true }))
+      }
+    }
+  }
 
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined
@@ -112,6 +129,21 @@ export default function AppHeader() {
             >
               MahDay
             </Typography>
+            <ToggleButtonGroup
+            style={{marginRight:'10px'}}
+              color='info'
+              size='small'
+              value={filter}
+              exclusive={true}
+              onChange={handleChangeOfFilter}
+            >
+              <ToggleButton color='info' value='showall'>
+                Show all
+              </ToggleButton>
+              <ToggleButton color='info' value='filter'>
+                Filter by Range
+              </ToggleButton>
+            </ToggleButtonGroup>
             <RangePicker
               defaultValue={[
                 moment(new Date(currentViewDateStart.substring(0, 10))),
