@@ -62,14 +62,20 @@
 }
 
 .timetext{
+  font-size: 11px;
+  margin-right: 5px;
+  
+}
+.time{
+  display:flex;
+  align-items: baseline;
   background-color: rgb(230, 235, 79);
   border-radius: 5px;
   color: black;
   padding: 5px 10px;
-  font-size: 11px;
   margin-bottom: 10px;
+  
 }
-.time{
-  display:flex;
-  align-items: flex-start;
+.timetexttime{
+font-size: 14px;
 }

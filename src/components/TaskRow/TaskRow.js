@@ -6,7 +6,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit'
 import RedoIcon from '@mui/icons-material/Redo'
 import SaveIcon from '@mui/icons-material/Save'
 import { Button, TextField } from '@mui/material'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   setEditable,
   markAsCompleted,
@@ -17,6 +17,8 @@ import moment from 'moment'
 
 function TaskRow(props) {
   const [description, setDescription] = useState(props.data)
+  const { currentViewDateStart,currentViewDateEnd } = useSelector((state) => state.calendar)
+
   const dispatch = useDispatch()
   const handleChange = (event) => {
     setDescription(event.target.value)
@@ -113,12 +115,19 @@ function TaskRow(props) {
         </div>
         {props.task.type == 'timebased' ? (
           <div className='time'>
+            {!(moment(currentViewDateEnd).diff(moment(currentViewDateStart), 'days')==1 )?
             <div className='timetext'>
-              {moment(props.task.taskDate).format('MMM Do YYYY - hh:mm a')}
+              {moment(props.task.taskDate).format('MMM Do YYYY  ')}
+            </div>:''}
+            <div className='timetexttime'>
+              {moment(props.task.taskDate).format('hh:mm a')}
             </div>
           </div>
         ) : (
-          ''
+          !(moment(currentViewDateEnd).diff(moment(currentViewDateStart), 'days')==1 )?
+            <div className='time'>           <div className='timetext'>
+              {moment(props.task.taskDate).format('MMM Do YYYY  ')}
+            </div></div>:''
         )}
       </div>
     </div>
