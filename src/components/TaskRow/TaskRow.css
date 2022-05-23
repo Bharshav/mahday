@@ -35,8 +35,10 @@
 
 .actions {
   display: flex;
-  width: 30%;
-  margin: 5px;
+  width: 50%;
+  flex-wrap: wrap;
+  margin:5px 0px;
+  justify-content: flex-end
 }
 /* 
 .actions1 Button:hover{
@@ -46,10 +48,14 @@
 .edittasktext {
 }
 .taskdesc {
-  width: 60%;
+  width: 50%;
 }
 
 .completed{
   background-color: rgba(0, 128, 0, 0.405);
   color: white;
+}
+
+.actionbutton{
+  width:20px;
 }

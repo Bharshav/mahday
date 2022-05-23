@@ -49,7 +49,7 @@ export default function NewTaskPopUp(props) {
         <AddIcon />
       </Button>
 
-      <Dialog maxWidth='md' fullWidth='true' open={open} onClose={handleClose}>
+      <Dialog maxWidth='md' fullWidth={true} open={open} onClose={handleClose}>
         <DialogTitle>Add a {props.taskType} task</DialogTitle>
         <DialogContent>
           <TextField

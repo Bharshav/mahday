@@ -15,7 +15,7 @@ first = new Date(first.substring(0,10))
 second = new Date(second.substring(0,10))
 date = new Date(date)
 
-return first<=date && date <=second //move to helper
+return first<=date && date <second //move to helper
 }
 
 function TimeToDo() {

@@ -3,10 +3,11 @@ import './TaskRow.css'
 import DoneIcon from '@mui/icons-material/Done'
 import DangerousIcon from '@mui/icons-material/Dangerous'
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
-import SaveIcon from '@mui/icons-material/Save'
+import RedoIcon from '@mui/icons-material/Redo';
+import SaveIcon from '@mui/icons-material/Save';
 import { Button, TextField } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { setEditable, markAsCompleted } from '../../features/tasks/taskSlice'
+import { setEditable, markAsCompleted, deleteTask,moveTo } from '../../features/tasks/taskSlice'
 function TaskRow(props) {
   const [description, setDescription] = useState(props.data)
   const dispatch = useDispatch()
@@ -42,7 +43,7 @@ function TaskRow(props) {
             dispatch(
               markAsCompleted({
                 id: props.tid,
-                completeStatus: true,
+                completeStatus: !props.isCompleted,
               })
             )
           }
@@ -56,9 +57,8 @@ function TaskRow(props) {
           variant='contained'
           onClick={() =>
             dispatch(
-              markAsCompleted({
+              deleteTask({
                 id: props.tid,
-                completeStatus: false,
               })
             )
           }
@@ -86,6 +86,21 @@ function TaskRow(props) {
           ) : (
             <SaveIcon style={{ color: 'white' }} />
           )}
+        </Button>
+        <Button
+          variant='contained'
+          style={{ backgroundColor: '#f44336' }}
+          onClick={() =>
+            dispatch(
+              moveTo({
+                id: props.tid
+              })
+            )
+          }
+          className='actionbutton'
+          color='error'
+        >
+          <RedoIcon style={{ color: 'white' }} />
         </Button>
       </div>
     </div>
