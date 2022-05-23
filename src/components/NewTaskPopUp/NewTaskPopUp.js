@@ -10,6 +10,8 @@ import DialogTitle from '@mui/material/DialogTitle'
 import { useDispatch } from 'react-redux'
 import AddIcon from '@mui/icons-material/Add'
 import { addTask } from '../../features/tasks/taskSlice'
+import { DatePicker } from 'antd'
+import moment from 'moment'
 
 export default function NewTaskPopUp(props) {
   const [open, setOpen] = React.useState(false)
@@ -21,22 +23,22 @@ export default function NewTaskPopUp(props) {
   }
 
   const handleClose = (data) => {
-    setOpen(false);
-    if(data.isTaskAdded){
-
-     dispatch(
-       addTask({
-         description: data.description,
-         completed: false,
-         type: props.taskType == 'time based'?'timebased':'taskbased',
-         typeprops: {
-           title: 'this is test',
-         },
-         taskDate: date, //This can be bought from popup later
-       })
-     )
+    setOpen(false)
+    if (data.isTaskAdded) {
+      dispatch(
+        addTask({
+          description: data.description,
+          completed: false,
+          type: props.taskType == 'time based' ? 'timebased' : 'taskbased',
+          typeprops: {
+            title: 'this is test',
+          },
+          taskDate: date, //This can be bought from popup later
+        })
+      )
     }
-        
+    setDescription((state) => '')
+    setDate((state) => new Date())
   }
 
   return (
@@ -60,16 +62,31 @@ export default function NewTaskPopUp(props) {
             multiline
             maxRows={4}
             value={description}
-            onChange={(event)=>{setDescription(event.target.value)}}
+            onChange={(event) => {
+              setDescription(event.target.value)
+            }}
           />
-          <div className="taskdate">
-           Task Date:
-          <Input style={{marginLeft:'10px'}} onChange={(e)=>setDate(e.target.value)} placeholder="Enter task date" type={props.taskType=='time based'?'datetime-local':'date'} />
+          <div className='taskdate'>
+            Task Date:
+            <Input
+              style={{ marginLeft: '10px' }}
+              onChange={(e) => setDate(e.target.value)}
+              placeholder='Enter task date'
+              type={props.taskType == 'time based' ? 'datetime-local' : 'date'}
+            />
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=>handleClose({isTaskAdded:false})}>Cancel</Button>
-          <Button onClick={()=>handleClose({isTaskAdded:true,description,date})}>Add Task</Button>
+          <Button onClick={() => handleClose({ isTaskAdded: false })}>
+            Cancel
+          </Button>
+          <Button
+            onClick={() =>
+              handleClose({ isTaskAdded: true, description, date })
+            }
+          >
+            Add Task
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
