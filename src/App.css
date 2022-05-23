@@ -50,6 +50,7 @@
   width: 45vw;
   padding: 10px;
   background-color: #2b8ff2;
+  min-width: 500px;
 
 }
 
@@ -58,6 +59,17 @@
   width: 45vw;
   padding: 10px;
   background-color: #2b8ff2;
+  min-width: 500px;
 
 
+}
+
+@media all and (max-width: 1000px) {
+  .tasktodo {
+    width: 100vw;
+    margin-top: 10px;
+  }
+  .timetodo {
+    width: 100vw;
+  }
 }
