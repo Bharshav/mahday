@@ -67,7 +67,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function AppHeader() {
   const [startDate, setStartDate] = React.useState(new Date())
   const dispatch = useDispatch()
-  const { currentViewDateStart, currentViewDateEnd } = useSelector(
+  const { currentViewDateStart, currentViewDateEnd,shouldShowAll } = useSelector(
     (state) => state.calendar
   )
   const [anchorEl, setAnchorEl] = React.useState(null)

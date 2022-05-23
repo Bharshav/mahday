@@ -9,7 +9,8 @@ import { addTask } from '../../features/tasks/taskSlice'
 import NewTaskPopUp from '../NewTaskPopUp/NewTaskPopUp'
 import { datesAreInBetween } from '../TimeToDo/TimeToDo'
 function TaskToDo() {
-  const { currentViewDateStart,currentViewDateEnd,showAll } = useSelector((state) => state.calendar)
+  const { currentViewDateStart, currentViewDateEnd, shouldShowAll:showAll } =
+    useSelector((state) => state.calendar)
   const { searchTerm } = useSelector((state) => state.search)
 
   const tasks = useSelector((state) =>

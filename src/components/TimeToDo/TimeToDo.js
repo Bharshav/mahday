@@ -21,7 +21,8 @@ return first<=date && date <second //move to helper
 }
 
 function TimeToDo() {
-  const {currentViewDateStart,currentViewDateEnd,showAll} = useSelector((state) => state.calendar)
+  const { currentViewDateStart, currentViewDateEnd, shouldShowAll:showAll } =
+    useSelector((state) => state.calendar)
   const {searchTerm} = useSelector((state) => state.search)
   const tasks = useSelector((state) =>
     state.tasks.tasks.filter(

@@ -4,9 +4,9 @@ const tomorrow = new Date()
 tomorrow.setDate(tomorrow.getDate() + 1)
 
 const initialState = {
-  currentViewDateStart: (new Date()).toJSON(),
+  currentViewDateStart: new Date().toJSON(),
   currentViewDateEnd: tomorrow.toJSON(),
-  showAll: false,
+  shouldShowAll: false,
 }
 
 const calendarSlice = createSlice({
@@ -24,7 +24,7 @@ const calendarSlice = createSlice({
       return initialState
     },
     showAll:(state,{payload})=>{
-      state.showAll = payload.showAll
+      state.shouldShowAll = payload.showAll
     }
   },
 })
