@@ -18,8 +18,9 @@ import {
 import { DatePicker, Space } from 'antd'
 import { modifySearchTerm } from '../../features/search/searchSlice'
 import moment from 'moment'
+import FeatureFlagPopUp from '../FeatureFlagPopUp/FeatureFlagPopUp'
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
-
+import './AppHeader.css'
 const { RangePicker } = DatePicker
 
 const Search = styled('div')(({ theme }) => ({
@@ -67,9 +68,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function AppHeader() {
   const [startDate, setStartDate] = React.useState(new Date())
   const dispatch = useDispatch()
-  const { currentViewDateStart, currentViewDateEnd,shouldShowAll } = useSelector(
-    (state) => state.calendar
-  )
+  const { currentViewDateStart, currentViewDateEnd, shouldShowAll } =
+    useSelector((state) => state.calendar)
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleClick = (event) => {
@@ -82,16 +82,16 @@ export default function AppHeader() {
   const [filter, setFilter] = React.useState(
     shouldShowAll ? 'showall' : 'filter'
   )
-    React.useEffect(() => {
-        dispatch(
-          modifyViewDate({
-            newDateStart: new Date().toJSON(),
-            newDateEnd: new Date().toJSON(),
-          })
-        )
-    },[])
+  React.useEffect(() => {
+    dispatch(
+      modifyViewDate({
+        newDateStart: new Date().toJSON(),
+        newDateEnd: new Date().toJSON(),
+      })
+    )
+  }, [])
   const handleChangeOfFilter = (event, newval) => {
-    if (newval!=null){
+    if (newval != null) {
       setFilter((val) => newval)
       if (newval === 'filter') {
         dispatch(showAll({ showAll: false }))
@@ -99,6 +99,9 @@ export default function AppHeader() {
         dispatch(showAll({ showAll: true }))
       }
     }
+  }
+  const showFeatureFlagPopUp = ()=>{
+
   }
 
   const open = Boolean(anchorEl)
@@ -139,7 +142,7 @@ export default function AppHeader() {
               MahDay
             </Typography>
             <ToggleButtonGroup
-            style={{marginRight:'10px'}}
+              style={{ marginRight: '10px' }}
               color='info'
               size='small'
               value={filter}
@@ -154,10 +157,7 @@ export default function AppHeader() {
               </ToggleButton>
             </ToggleButtonGroup>
             <RangePicker
-              defaultValue={[
-                moment(new Date()),
-                moment(new Date()),
-              ]}
+              defaultValue={[moment(new Date()), moment(new Date())]}
               onCalendarChange={(e) =>
                 dispatch(
                   modifyViewDate({
@@ -180,6 +180,7 @@ export default function AppHeader() {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
+            <FeatureFlagPopUp/>
           </Toolbar>
         </AppBar>
       </Box>

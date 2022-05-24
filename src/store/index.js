@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import tasksReducer from '../features/tasks/taskSlice'
 import calendarReducer from '../features/calendar/calendarSlice'
 import searchReducer from '../features/search/searchSlice'
+import featureFlagReducer from '../features/featureflags/featureFlagSlice'
 
 import storage from 'redux-persist/lib/storage'
 import { combineReducers } from 'redux'
@@ -12,6 +13,7 @@ const reducers = combineReducers({
   tasks: tasksReducer,
   calendar: calendarReducer,
   search: searchReducer,
+  featureFlag: featureFlagReducer,
 })
 
 // export const store = configureStore({

@@ -7,14 +7,16 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AddIcon from '@mui/icons-material/Add'
 import { addTask } from '../../features/tasks/taskSlice'
 import { DatePicker } from 'antd'
 import moment from 'moment'
 import addedAudio from '../../notifications/Added.mp3'
+import { FeatureFlags } from '../../features/featureflags/featureFlagSlice'
 
 export default function NewTaskPopUp(props) {
+  const featureFlags = useSelector((store) => store.featureFlag)
   const [open, setOpen] = React.useState(false)
   const [description, setDescription] = React.useState('')
   const [date, setDate] = React.useState(new Date())
@@ -36,9 +38,10 @@ export default function NewTaskPopUp(props) {
           },
           taskDate: date.toJSON(), //This can be bought from popup later
         })
-        )
+      )
+      if(featureFlags[FeatureFlags.PLAYSOUND]){
         new Audio(addedAudio).play()
-        
+      }
     }
     setDescription((state) => '')
     setDate((state) => new Date())
@@ -50,9 +53,9 @@ export default function NewTaskPopUp(props) {
         variant='contained'
         className='addaction'
         onClick={handleClickOpen}
-        style={{backgroundColor: '#fff'}}
+        style={{ backgroundColor: '#fff' }}
       >
-        <AddIcon style={{color:'grey',fontSize:'25px'}}/>
+        <AddIcon style={{ color: 'grey', fontSize: '25px' }} />
       </Button>
 
       <Dialog maxWidth='md' fullWidth={true} open={open} onClose={handleClose}>

@@ -16,8 +16,11 @@ import {
 import doneAudio from '../../notifications/Done.mp3'
 
 import moment from 'moment'
+import { FeatureFlags } from '../../features/featureflags/featureFlagSlice'
 
 function TaskRow(props) {
+  
+  const featureFlags = useSelector((store) => store.featureFlag)
   const [description, setDescription] = useState(props.data)
   const { currentViewDateStart, currentViewDateEnd, shouldShowAll } =
     useSelector((state) => state.calendar)
@@ -59,7 +62,8 @@ function TaskRow(props) {
                   completeStatus: !props.isCompleted,
                 })
               )
-              if (!props.isCompleted) {
+              
+              if (!props.isCompleted && featureFlags[FeatureFlags.PLAYSOUND]) {
               new Audio(doneAudio).play()
               }
             }}
