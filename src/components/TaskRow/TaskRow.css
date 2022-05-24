@@ -79,7 +79,7 @@
 }
 
 .tasktimerow {
-  animation: ease-in-out rotateonce 2s 1;
+  animation: ease-in-out rotateonce 1 0.4s;
 }
 
 @keyframes rotateonce {

@@ -82,7 +82,14 @@ export default function AppHeader() {
   const [filter, setFilter] = React.useState(
     shouldShowAll ? 'showall' : 'filter'
   )
-
+    React.useEffect(() => {
+        dispatch(
+          modifyViewDate({
+            newDateStart: new Date().toJSON(),
+            newDateEnd: new Date().toJSON(),
+          })
+        )
+    },[])
   const handleChangeOfFilter = (event, newval) => {
     if (newval!=null){
       setFilter((val) => newval)
@@ -148,8 +155,8 @@ export default function AppHeader() {
             </ToggleButtonGroup>
             <RangePicker
               defaultValue={[
-                moment(new Date(currentViewDateStart.substring(0, 10))),
-                moment(new Date(currentViewDateStart.substring(0, 10))),
+                moment(new Date()),
+                moment(new Date()),
               ]}
               onCalendarChange={(e) =>
                 dispatch(
