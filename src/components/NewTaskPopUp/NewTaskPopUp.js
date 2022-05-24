@@ -12,6 +12,7 @@ import AddIcon from '@mui/icons-material/Add'
 import { addTask } from '../../features/tasks/taskSlice'
 import { DatePicker } from 'antd'
 import moment from 'moment'
+import addedAudio from '../../notifications/Added.mp3'
 
 export default function NewTaskPopUp(props) {
   const [open, setOpen] = React.useState(false)
@@ -35,7 +36,9 @@ export default function NewTaskPopUp(props) {
           },
           taskDate: date.toJSON(), //This can be bought from popup later
         })
-      )
+        )
+        new Audio(addedAudio).play()
+        
     }
     setDescription((state) => '')
     setDate((state) => new Date())

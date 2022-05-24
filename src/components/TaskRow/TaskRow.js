@@ -13,6 +13,8 @@ import {
   deleteTask,
   moveTo,
 } from '../../features/tasks/taskSlice'
+import doneAudio from '../../notifications/Done.mp3'
+
 import moment from 'moment'
 
 function TaskRow(props) {
@@ -50,14 +52,17 @@ function TaskRow(props) {
         </div>
         <div className='actions'>
           <Button
-            onClick={() =>
+            onClick={() => {
               dispatch(
                 markAsCompleted({
                   id: props.tid,
                   completeStatus: !props.isCompleted,
                 })
               )
-            }
+              if (!props.isCompleted) {
+              new Audio(doneAudio).play()
+              }
+            }}
             variant='contained'
             className='actionbutton'
             color='success'
