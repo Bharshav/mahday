@@ -17,7 +17,8 @@ import moment from 'moment'
 
 function TaskRow(props) {
   const [description, setDescription] = useState(props.data)
-  const { currentViewDateStart,currentViewDateEnd,showAll } = useSelector((state) => state.calendar)
+  const { currentViewDateStart, currentViewDateEnd, shouldShowAll } =
+    useSelector((state) => state.calendar)
 
   const dispatch = useDispatch()
   const handleChange = (event) => {
@@ -115,19 +116,38 @@ function TaskRow(props) {
         </div>
         {props.task.type == 'timebased' ? (
           <div className='time'>
-            {(showAll || !(moment(currentViewDateEnd).diff(moment(currentViewDateStart), 'days')==1 ))?
-            <div className='timetext'>
-              {moment(props.task.taskDate).format('MMM Do YYYY  ')}
-            </div>:''}
+            {shouldShowAll ||
+            !(
+              moment(currentViewDateEnd).diff(
+                moment(currentViewDateStart),
+                'days'
+              ) == 1
+            ) ? (
+              <div className='timetext'>
+                {moment(props.task.taskDate).format('MMM Do YYYY  ')}
+              </div>
+            ) : (
+              ''
+            )}
             <div className='timetexttime'>
               {moment(props.task.taskDate).format('hh:mm a')}
             </div>
           </div>
-        ) : ( (showAll ||
-          !(moment(currentViewDateEnd).diff(moment(currentViewDateStart), 'days')==1 ))?
-            <div className='time'>           <div className='timetext'>
+        ) : shouldShowAll ||
+          !(
+            moment(currentViewDateEnd).diff(
+              moment(currentViewDateStart),
+              'days'
+            ) == 1
+          ) ? (
+          <div className='time'>
+            {' '}
+            <div className='timetext'>
               {moment(props.task.taskDate).format('MMM Do YYYY  ')}
-            </div></div>:''
+            </div>
+          </div>
+        ) : (
+          ''
         )}
       </div>
     </div>
