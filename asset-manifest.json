@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/mahday/static/css/main.6da6ede4.css",
-    "main.js": "/mahday/static/js/main.aa66e88a.js",
+    "main.css": "/mahday/static/css/main.c4bae386.css",
+    "main.js": "/mahday/static/js/main.fc134543.js",
     "static/js/787.8418a344.chunk.js": "/mahday/static/js/787.8418a344.chunk.js",
     "static/media/Added.mp3": "/mahday/static/media/Added.c0f5557dc8f703abea7c.mp3",
     "static/media/Done.mp3": "/mahday/static/media/Done.734abe96efd14c651775.mp3",
     "static/media/logo.svg": "/mahday/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/mahday/index.html",
-    "main.6da6ede4.css.map": "/mahday/static/css/main.6da6ede4.css.map",
-    "main.aa66e88a.js.map": "/mahday/static/js/main.aa66e88a.js.map",
+    "main.c4bae386.css.map": "/mahday/static/css/main.c4bae386.css.map",
+    "main.fc134543.js.map": "/mahday/static/js/main.fc134543.js.map",
     "787.8418a344.chunk.js.map": "/mahday/static/js/787.8418a344.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6da6ede4.css",
-    "static/js/main.aa66e88a.js"
+    "static/css/main.c4bae386.css",
+    "static/js/main.fc134543.js"
   ]
 }
