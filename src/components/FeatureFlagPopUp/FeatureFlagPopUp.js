@@ -61,7 +61,7 @@ export default function FeatureFlagPopUp() {
         aria-describedby='alert-dialog-slide-description'
       >
         <DialogTitle>{'Feature flags:'}</DialogTitle>
-        <DialogContent>
+        <DialogContent className='ffdialogcontent'>
           {Object.keys(FeatureFlags).map((flag) => (
             <div className='featureFlags' key={FeatureFlags[flag]}>
               <div className='featureFlagName'>{flag}</div>
