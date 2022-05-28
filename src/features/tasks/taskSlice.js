@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import moment from 'moment'
 const initialState = {
   tasks: [],
   isLoading: true,
@@ -36,10 +37,10 @@ const taskSlice = createSlice({
     },
     moveTo: (state, { payload }) => {
       const task = state.tasks.find((task) => task.id === payload.id)
-      const nextDay = new Date(task.taskDate.substring(0, 10))
-      nextDay.setDate(nextDay.getDate() + 1)
+      let nextDay = moment(task.taskDate)
+      nextDay = nextDay.add(1, 'days')
       const newDate = payload.taskDate ? payload.taskDate : nextDay
-      task.taskDate = newDate.toJSON()
+      task.taskDate = newDate.toDate().toJSON()
     },
   },
 })
