@@ -1,26 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
-import TimeToDo from './components/TimeToDo/TimeToDo';
-import TaskToDo from './components/TaskToDo/TaskToDo';
-import AppHeader from './components/AppHeader/AppHeader';
-import TaskProgress from './components/TaskProgress/TaskProgress';
-
+import logo from './logo.svg'
+import './App.css'
+import TimeToDo from './components/TimeToDo/TimeToDo'
+import TaskToDo from './components/TaskToDo/TaskToDo'
+import AppHeader from './components/AppHeader/AppHeader'
+import TaskProgress from './components/TaskProgress/TaskProgress'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import moment from 'moment'
 function App() {
-  return (
-    <div className="TaskView">
+  const { tasks } = useSelector((state) => state.tasks)
+  const [ allTasks, setAllTasks ] = useState(tasks)
+  
+  useEffect(() => {
+    if (!('Notification' in window)) {
+      console.log('This browser does not support desktop notification')
+    } else {
+      console.log('Notifications are supported')
+      Notification.requestPermission()
+    }
+    console.log(`initializing interval`)
+    const interval = setInterval(() => {
       
-      <AppHeader/>
+        // console.log(tasks)
+        const sendNotificationsFor =
+          tasks.filter(
+            (task) =>
+              task.isCompleted === false &&
+              moment().isSame(moment(task.taskDate), 'minute')
+          )
+        for(let i = 0; i < sendNotificationsFor.length; i++) {
+          new Notification(`Task: ${sendNotificationsFor[i].description} is due now`)
+        }
+        // return tasks
+      
+    }, 60000)
+
+    return () => {
+      console.log(`clearing interval`)
+      clearInterval(interval)
+    }
+  }, [tasks])
+  return (
+    <div className='TaskView'>
+      <AppHeader />
       {/* <TaskProgress/> */}
-      <div className="todo">
-        <div className="timetodo">
-          <TimeToDo/>
+      <div className='todo'>
+        <div className='timetodo'>
+          <TimeToDo />
         </div>
-        <div className="tasktodo">
-          <TaskToDo/>
+        <div className='tasktodo'>
+          <TaskToDo />
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
