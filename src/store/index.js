@@ -4,6 +4,7 @@ import calendarReducer from '../features/calendar/calendarSlice'
 import searchReducer from '../features/search/searchSlice'
 import featureFlagReducer from '../features/featureflags/featureFlagSlice'
 import pageNavReducer from '../features/pagenav/pagenavSlice'
+import loggerReducer from '../features/logger/loggerSlice'
 import storage from 'redux-persist/lib/storage'
 import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
@@ -14,7 +15,8 @@ const reducers = combineReducers({
   calendar: calendarReducer,
   search: searchReducer,
   featureFlag: featureFlagReducer,
-  pagenav: pageNavReducer
+  pagenav: pageNavReducer,
+  logger: loggerReducer,
 })
 
 // export const store = configureStore({

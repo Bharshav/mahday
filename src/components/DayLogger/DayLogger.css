@@ -1,0 +1,22 @@
+.daylogger{
+ padding: 1rem;
+ background-color: #1890ff;
+ color: white;
+
+}
+
+.timeline{
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+ align-items: flex-start;
+
+}
+
+.addlog{
+ flex-grow: 1
+}
+
+.loggercards{
+ flex-grow: 3;
+}
