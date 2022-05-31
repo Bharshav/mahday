@@ -3,12 +3,16 @@ import './App.css'
 import TimeToDo from './components/TimeToDo/TimeToDo'
 import TaskToDo from './components/TaskToDo/TaskToDo'
 import AppHeader from './components/AppHeader/AppHeader'
+import AppHeaderResponsive from './components/AppHeaderResponsive/AppHeaderResponsive'
+import {pages} from './store/constants'
+import DayLogger from './components/DayLogger/DayLogger'
 import TaskProgress from './components/TaskProgress/TaskProgress'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 function App() {
   const { tasks } = useSelector((state) => state.tasks)
+  const { currentPage } = useSelector((state) => state.pagenav)
   const [ allTasks, setAllTasks ] = useState(tasks)
   
   useEffect(() => {
@@ -42,8 +46,12 @@ function App() {
   }, [tasks])
   return (
     <div className='TaskView'>
-      <AppHeader />
+      <div className="appheader">
+
+      <AppHeaderResponsive />
+      </div>
       {/* <TaskProgress/> */}
+      {currentPage == pages[0]?
       <div className='todo'>
         <div className='timetodo'>
           <TimeToDo />
@@ -51,7 +59,10 @@ function App() {
         <div className='tasktodo'>
           <TaskToDo />
         </div>
-      </div>
+      </div>:(
+        currentPage == pages[1]?<DayLogger/>:''
+      )
+      }
     </div>
   )
 }
