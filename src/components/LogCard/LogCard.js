@@ -33,7 +33,7 @@ function LogCard(props) {
       />
       <TextArea
         className='whatidid'
-        value={props.log.description}
+        value={props.log.description == ''?undefined :props.log.description}
         onChange={(e) => dispatch(updateLog({id:props.log.id, description: e.target.value }))}
         placeholder={`What were you doing from ${moment(
           props.log.startdatetime
