@@ -9,17 +9,24 @@ const loggerSlice = createSlice({
   initialState,
   reducers: {
     updateLog: (state, { payload }) => {
-      const log = state.logs.filter(log => log.id === payload.id)
-      log.description = payload.description
-      log.datetime = payload.datetime 
-
+      console.log(payload)
+      const log = state.logs.find((log) => log.id === payload.id)
+      if (payload.description) {
+        log.description = payload.description
+      }
+      if (payload.startdatetime) {
+        log.startdatetime = payload.startdatetime
+      }
+      if (payload.enddatetime) {
+        log.enddatetime = payload.enddatetime
+      }
     },
     addLog: (state, { payload }) => {
       state.logs.push(payload)
     },
     deleteLog: (state, { payload }) => {
-      state.logs = state.logs.filter(log => log.id !== payload.id)
-    }
+      state.logs = state.logs.filter((log) => log.id !== payload.id)
+    },
   },
 })
 

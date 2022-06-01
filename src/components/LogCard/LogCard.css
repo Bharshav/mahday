@@ -1,13 +1,26 @@
 .logcard{
- height: 10rem;
+ height: 14rem;
  width: 20rem;
  background-color: white;
  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
  border-radius: 0.5rem;
  margin: 1rem;
+ color: #2b8ff2;
+ position: relative;
+ padding: 1rem;
  
 }
 
 .logcard:hover{
  cursor: pointer;
+}
+
+.delete{
+ position: absolute;
+ right: 1rem;
+ bottom: 1rem;
+}
+
+.whatidid{
+ margin-top: 1rem;
 }
