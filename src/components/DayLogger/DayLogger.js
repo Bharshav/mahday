@@ -15,7 +15,7 @@ function DayLogger() {
         id: logs.length,
         startdatetime: new Date().toJSON(),
         enddatetime: moment(new Date()).add(30,'minute').toJSON(),
-        description: 'test',
+        description: '',
       })
     )
   }
